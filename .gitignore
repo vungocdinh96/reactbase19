@@ -21,6 +21,7 @@ skills-lock.json
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
 *.suo
@@ -31,3 +32,6 @@ skills-lock.json
 
 .tanstack/
 package-lock.json
+
+# TanStack Router generated file
+src/routes/routeTree.gen.ts

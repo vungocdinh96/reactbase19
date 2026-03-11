@@ -6,7 +6,7 @@ import { resolve } from "node:path";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    tanstackRouter({ routesDirectory: "./src/routes", generatedRouteTree: "./src/routeTree.gen.ts" }),
+    tanstackRouter({ routesDirectory: "./src/routes", generatedRouteTree: "./src/routes/routeTree.gen.ts" }),
     react({
       babel: {
         plugins: [["babel-plugin-react-compiler"]],
