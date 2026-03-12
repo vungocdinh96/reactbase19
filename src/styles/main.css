@@ -1,103 +1,91 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  /* Semantic color tokens using OKLCH */
-  --color-background: oklch(100% 0 0);
-  --color-foreground: oklch(14.5% 0.025 264);
+  /* Primary */
+  --color-primary-50: var(--dyn-primary-50);
+  --color-primary-100: var(--dyn-primary-100);
+  --color-primary-200: var(--dyn-primary-200);
+  --color-primary-300: var(--dyn-primary-300);
+  --color-primary-400: var(--dyn-primary-400);
+  --color-primary-500: var(--dyn-primary-500);
+  --color-primary-600: var(--dyn-primary-600);
+  --color-primary-700: var(--dyn-primary-700);
+  --color-primary-800: var(--dyn-primary-800);
+  --color-primary-900: var(--dyn-primary-900);
+  --color-primary-950: var(--dyn-primary-950);
 
-  --color-primary: oklch(14.5% 0.025 264);
-  --color-primary-foreground: oklch(98% 0.01 264);
+  /* Secondary */
+  --color-secondary-50: var(--dyn-secondary-50);
+  --color-secondary-100: var(--dyn-secondary-100);
+  --color-secondary-200: var(--dyn-secondary-200);
+  --color-secondary-300: var(--dyn-secondary-300);
+  --color-secondary-400: var(--dyn-secondary-400);
+  --color-secondary-500: var(--dyn-secondary-500);
+  --color-secondary-600: var(--dyn-secondary-600);
+  --color-secondary-700: var(--dyn-secondary-700);
+  --color-secondary-800: var(--dyn-secondary-800);
+  --color-secondary-900: var(--dyn-secondary-900);
+  --color-secondary-950: var(--dyn-secondary-950);
 
-  --color-secondary: oklch(96% 0.01 264);
-  --color-secondary-foreground: oklch(14.5% 0.025 264);
+  /* Neutral */
+  --color-neutral-50: var(--dyn-neutral-50);
+  --color-neutral-100: var(--dyn-neutral-100);
+  --color-neutral-200: var(--dyn-neutral-200);
+  --color-neutral-300: var(--dyn-neutral-300);
+  --color-neutral-400: var(--dyn-neutral-400);
+  --color-neutral-500: var(--dyn-neutral-500);
+  --color-neutral-600: var(--dyn-neutral-600);
+  --color-neutral-700: var(--dyn-neutral-700);
+  --color-neutral-800: var(--dyn-neutral-800);
+  --color-neutral-900: var(--dyn-neutral-900);
+  --color-neutral-950: var(--dyn-neutral-950);
 
-  --color-muted: oklch(96% 0.01 264);
-  --color-muted-foreground: oklch(46% 0.02 264);
+  /* Semantic Colors */
+  --color-success-50: var(--dyn-success-50);
+  --color-success-100: var(--dyn-success-100);
+  --color-success-200: var(--dyn-success-200);
+  --color-success-300: var(--dyn-success-300);
+  --color-success-400: var(--dyn-success-400);
+  --color-success-500: var(--dyn-success-500);
+  --color-success-600: var(--dyn-success-600);
+  --color-success-700: var(--dyn-success-700);
+  --color-success-800: var(--dyn-success-800);
+  --color-success-900: var(--dyn-success-900);
+  --color-success-950: var(--dyn-success-950);
 
-  --color-accent: oklch(96% 0.01 264);
-  --color-accent-foreground: oklch(14.5% 0.025 264);
+  --color-error-50: var(--dyn-error-50);
+  --color-error-100: var(--dyn-error-100);
+  --color-error-200: var(--dyn-error-200);
+  --color-error-300: var(--dyn-error-300);
+  --color-error-400: var(--dyn-error-400);
+  --color-error-500: var(--dyn-error-500);
+  --color-error-600: var(--dyn-error-600);
+  --color-error-700: var(--dyn-error-700);
+  --color-error-800: var(--dyn-error-800);
+  --color-error-900: var(--dyn-error-900);
+  --color-error-950: var(--dyn-error-950);
 
-  --color-destructive: oklch(53% 0.22 27);
-  --color-destructive-foreground: oklch(98% 0.01 264);
+  --color-info-50: var(--dyn-info-50);
+  --color-info-100: var(--dyn-info-100);
+  --color-info-200: var(--dyn-info-200);
+  --color-info-300: var(--dyn-info-300);
+  --color-info-400: var(--dyn-info-400);
+  --color-info-500: var(--dyn-info-500);
+  --color-info-600: var(--dyn-info-600);
+  --color-info-700: var(--dyn-info-700);
+  --color-info-800: var(--dyn-info-800);
+  --color-info-900: var(--dyn-info-900);
+  --color-info-950: var(--dyn-info-950);
 
-  --color-border: oklch(91% 0.01 264);
-  --color-ring: oklch(14.5% 0.025 264);
-  --color-ring-offset: oklch(100% 0 0);
-
-  --color-card: oklch(100% 0 0);
-  --color-card-foreground: oklch(14.5% 0.025 264);
-
-  /* Radius tokens */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-
-  /* Animation tokens */
-  --animate-fade-in: fade-in 0.2s ease-out;
-  --animate-fade-out: fade-out 0.2s ease-in;
-  --animate-slide-in: slide-in 0.3s ease-out;
-  --animate-slide-out: slide-out 0.3s ease-in;
-
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes fade-out {
-    from { opacity: 1; }
-    to { opacity: 0; }
-  }
-
-  @keyframes slide-in {
-    from { transform: translateY(-0.5rem); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
-
-  @keyframes slide-out {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(-0.5rem); opacity: 0; }
-  }
-}
-
-/* Dark mode variant - class-based */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* Dark mode token overrides */
-.dark {
-  --color-background: oklch(14.5% 0.025 264);
-  --color-foreground: oklch(98% 0.01 264);
-
-  --color-primary: oklch(98% 0.01 264);
-  --color-primary-foreground: oklch(14.5% 0.025 264);
-
-  --color-secondary: oklch(22% 0.02 264);
-  --color-secondary-foreground: oklch(98% 0.01 264);
-
-  --color-muted: oklch(22% 0.02 264);
-  --color-muted-foreground: oklch(65% 0.02 264);
-
-  --color-accent: oklch(22% 0.02 264);
-  --color-accent-foreground: oklch(98% 0.01 264);
-
-  --color-destructive: oklch(42% 0.15 27);
-  --color-destructive-foreground: oklch(98% 0.01 264);
-
-  --color-border: oklch(22% 0.02 264);
-  --color-ring: oklch(83% 0.02 264);
-  --color-ring-offset: oklch(14.5% 0.025 264);
-
-  --color-card: oklch(14.5% 0.025 264);
-  --color-card-foreground: oklch(98% 0.01 264);
-}
-
-/* Base styles */
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground antialiased;
-  }
+  --color-warning-50: var(--dyn-warning-50);
+  --color-warning-100: var(--dyn-warning-100);
+  --color-warning-200: var(--dyn-warning-200);
+  --color-warning-300: var(--dyn-warning-300);
+  --color-warning-400: var(--dyn-warning-400);
+  --color-warning-500: var(--dyn-warning-500);
+  --color-warning-600: var(--dyn-warning-600);
+  --color-warning-700: var(--dyn-warning-700);
+  --color-warning-800: var(--dyn-warning-800);
+  --color-warning-900: var(--dyn-warning-900);
+  --color-warning-950: var(--dyn-warning-950);
 }
