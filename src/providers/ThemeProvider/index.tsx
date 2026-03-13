@@ -1,13 +1,14 @@
 import { useContext, useEffect, useMemo, type ReactNode } from 'react';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, type ThemeConfig } from 'antd';
 import { MainContext } from '../MainProvider/MainContext';
 import { SafeLocalStorage } from '@/utils/safeStorage';
 import CONSTANTS from '@/utils/constants';
 import { useAppDispatch } from '@/hooks/useAppDispatch';
-import type { ITheme } from '@/types/theme';
+import type { ColorPalette, ITheme, IThemeContext } from '@/types/theme';
 import { updateSelectedTheme } from '@/store/globalSlice';
 import defaultTheme from '@/utils/defaultTheme';
 import { useAppSelector } from '@/hooks/useAppSelector';
+import { initAntdTheme } from '@/utils/initAntdTheme';
 
 /**
  * Applies a theme palette to CSS custom properties on the document root.
@@ -26,9 +27,32 @@ function applyThemeToCssVars(themeData: ITheme) {
   }
 }
 
+/**
+ * Builds a merged theme by combining the default theme with overrides from the theme context.
+ * For each color group declared in the selected theme, individual shades are deep-merged
+ * on top of the corresponding default group — only explicitly declared shades are overridden.
+ * @param themeContext - The full theme context object containing all named theme variants.
+ * @param selectedTheme - The key of the active theme variant (e.g. `"light"`, `"dark"`).
+ * @returns A complete `ITheme` object with default values filled in for any missing shades.
+ */
+function buildMergedTheme(themeContext: IThemeContext, selectedTheme: string): ITheme {
+  const themeData = themeContext?.[selectedTheme];
+  const mergedTheme: ITheme = { ...defaultTheme };
+
+  if (themeData) {
+    for (const [group, value] of Object.entries(themeData)) {
+      if (typeof value === 'object' && value !== null) {
+        mergedTheme[group] = { ...((defaultTheme as Record<string, ColorPalette>)[group] ?? {}), ...(value as ColorPalette) };
+      }
+    }
+  }
+
+  return mergedTheme;
+}
+
 export default function ThemeConfigProvider({ children }: { children?: ReactNode }) {
   const dispatch = useAppDispatch();
-  const themeData = useContext(MainContext)?.theme;
+  const mainContext = useContext(MainContext);
   const selectedTheme = useAppSelector(state => state.global.selectedTheme);
 
   useEffect(() => {
@@ -42,27 +66,18 @@ export default function ThemeConfigProvider({ children }: { children?: ReactNode
       dispatch(updateSelectedTheme(CONSTANTS.DEFAULT_THEME));
       SafeLocalStorage.setItem(CONSTANTS.LOCAL_STORAGE_KEYS.THEME, CONSTANTS.DEFAULT_THEME, CONSTANTS.LOCAL_STORAGE_KEYS.THEME);
     }
-  }, [themeData, dispatch]);
+  }, [dispatch]);
 
+  // Build the merged theme object based on context and selected theme
+  const mergedTheme = useMemo(() => buildMergedTheme(mainContext.theme, selectedTheme), [mainContext.theme, selectedTheme]);
+
+  // Whenever the merged theme changes, apply it to CSS variables
   useEffect(() => {
-    // TODO: optimize by only applying changed variables instead of the whole theme on every change
-    applyThemeToCssVars(themeData?.[selectedTheme] ?? defaultTheme);
-  }, [themeData, selectedTheme]);
+    applyThemeToCssVars(mergedTheme);
+  }, [mergedTheme]);
 
-  // custom antd theme tokens
-  const antdTheme = useMemo(() => {
-    if (!themeData || !selectedTheme) return {};
-
-    return {
-      token: {
-        colorPrimary: themeData[selectedTheme]?.primary?.[500] ?? '#1890ff',
-        colorError: themeData[selectedTheme]?.error?.[500] ?? '#ff4d4f',
-        colorWarning: themeData[selectedTheme]?.warning?.[500] ?? '#faad14',
-        colorSuccess: themeData[selectedTheme]?.success?.[500] ?? '#52c41a',
-        colorInfo: themeData[selectedTheme]?.info?.[500] ?? '#1890ff',
-      },
-    };
-  }, [themeData, selectedTheme]);
+  // Generate the Ant Design theme configuration based on the merged theme
+  const antdTheme: ThemeConfig = useMemo(() => initAntdTheme(mergedTheme), [mergedTheme]);
 
   return <ConfigProvider theme={antdTheme}>{children}</ConfigProvider>;
 }
