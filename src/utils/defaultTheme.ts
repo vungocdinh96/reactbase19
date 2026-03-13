@@ -1,6 +1,16 @@
 const defaultTheme = {
   colorTextBase: '#000',
   colorBgBase: '#fff',
+
+  // Button
+  colorBgContainerButton: '#2F3E5D',
+  colorBgPrimaryButton: '#4CC2FF',
+  colorTextPrimaryButton: '#062D4B',
+  colorBgHoverPrimaryButton: '#06A0F1',
+  colorTextHoverPrimaryButton: '#062D4B',
+  colorLinkHoverButton: '#06A0F1',
+  borderRadiusButton: 4,
+
   primary: {
     '50': '#F3FBF2',
     '100': '#E2F7E1',

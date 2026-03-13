@@ -89,8 +89,8 @@
   --color-warning-900: var(--dyn-warning-900);
   --color-warning-950: var(--dyn-warning-950);
 
-  --color-colorBgBase: var(--dyn-colorBgBase);
-  --color-colorTextBase: var(--dyn-colorTextBase);
+  --color-background: var(--dyn-colorBgBase);
+  --color-foreground: var(--dyn-colorTextBase);
 }
 
 :root {
