@@ -1,4 +1,6 @@
 const defaultTheme = {
+  colorTextBase: '#000',
+  colorBgBase: '#fff',
   primary: {
     '50': '#F3FBF2',
     '100': '#E2F7E1',

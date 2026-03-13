@@ -1,9 +1,7 @@
 {
   "light": {
-    "base": {
-      "text": "#000",
-      "bg": "#fff"
-    },
+    "colorTextBase": "#000",
+    "colorBgBase": "#fff",
     "primary": {
       "50": "#F3FBF2",
       "100": "#E2F7E1",
@@ -97,10 +95,8 @@
     }
   },
   "dark": {
-    "base": {
-      "text": "#ededed",
-      "bg": "#121212"
-    },
+    "colorTextBase": "#ededed",
+    "colorBgBase": "#121212",
     "primary": {
       "50": "#0c2f45",
       "100": "#134a67",

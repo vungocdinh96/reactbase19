@@ -19,10 +19,13 @@ import { initAntdTheme } from '@/utils/initAntdTheme';
  */
 function applyThemeToCssVars(themeData: ITheme) {
   const root = document.documentElement;
-  for (const [group, shades] of Object.entries(themeData)) {
-    if (typeof shades !== 'object' || shades === null) continue;
-    for (const [shade, value] of Object.entries(shades)) {
-      root.style.setProperty(`--dyn-${group}-${shade}`, value as string);
+  for (const [key, value] of Object.entries(themeData)) {
+    if (typeof value === 'object' && value !== null) {
+      for (const [shade, shadeValue] of Object.entries(value)) {
+        root.style.setProperty(`--dyn-${key}-${shade}`, shadeValue as string);
+      }
+    } else if (typeof value === 'string') {
+      root.style.setProperty(`--dyn-${key}`, value);
     }
   }
 }
@@ -42,7 +45,13 @@ function buildMergedTheme(themeContext: IThemeContext, selectedTheme: string): I
   if (themeData) {
     for (const [group, value] of Object.entries(themeData)) {
       if (typeof value === 'object' && value !== null) {
-        mergedTheme[group] = { ...((defaultTheme as Record<string, ColorPalette>)[group] ?? {}), ...(value as ColorPalette) };
+        const defaultGroup = (defaultTheme as Record<string, unknown>)[group];
+        mergedTheme[group] = {
+          ...(typeof defaultGroup === 'object' && defaultGroup !== null ? (defaultGroup as ColorPalette) : {}),
+          ...(value as ColorPalette),
+        };
+      } else if (value !== undefined) {
+        mergedTheme[group] = value;
       }
     }
   }
