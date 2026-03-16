@@ -1,16 +1,10 @@
-import React from 'react';
-import { Button as AntButton, type ButtonProps } from 'antd';
-// import styles from './ButtonUI.module.css';
-import { classNames } from '@/utils/classNames';
+import { Button as AntButton, type ButtonProps } from "antd";
+import styles from "./ButtonUI.module.css";
+import { classNames } from "@/utils/classNames";
 
-export const ButtonUI = React.forwardRef<HTMLButtonElement, ButtonProps>(({ className, children, ...rest }, ref) => {
-  const customClasses = classNames(className, {});
+export type CustomButtonProps = ButtonProps;
 
-  return (
-    <AntButton ref={ref} className={customClasses} {...rest}>
-      {children}
-    </AntButton>
-  );
-});
-
-ButtonUI.displayName = 'ButtonUI';
+export function ButtonUI({ className, ...rest }: CustomButtonProps) {
+  const customClasses = classNames(styles["custom-component"], className, {});
+  return <AntButton className={customClasses} {...rest} />;
+}

@@ -1,5 +1,5 @@
-import DownloadIcon from './DownloadIcon';
-import ReactLogo from './ReactLogo';
+import DownloadIcon from "./DownloadIcon";
+import ReactLogo from "./ReactLogo";
 
 const Icons = {
   DownloadIcon,

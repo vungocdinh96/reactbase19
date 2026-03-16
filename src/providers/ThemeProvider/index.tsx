@@ -1,14 +1,14 @@
-import { useContext, useEffect, useMemo, type ReactNode } from 'react';
-import { ConfigProvider, type ThemeConfig } from 'antd';
-import { MainContext } from '../MainProvider/MainContext';
-import { SafeLocalStorage } from '@/utils/safeStorage';
-import CONSTANTS from '@/utils/constants';
-import { useAppDispatch } from '@/hooks/useAppDispatch';
-import type { ColorPalette, ITheme, IThemeContext } from '@/types/theme';
-import { updateSelectedTheme } from '@/store/globalSlice';
-import defaultTheme from '@/utils/defaultTheme';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { initAntdTheme } from '@/utils/initAntdTheme';
+import { useContext, useEffect, useMemo, type ReactNode } from "react";
+import { ConfigProvider, type ThemeConfig } from "antd";
+import { MainContext } from "../MainProvider/MainContext";
+import { SafeLocalStorage } from "@/utils/safeStorage";
+import CONSTANTS from "@/utils/constants";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import type { ColorPalette, ITheme, IThemeContext } from "@/types/theme";
+import { updateSelectedTheme } from "@/store/globalSlice";
+import defaultTheme from "@/utils/defaultTheme";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { initAntdTheme } from "@/utils/initAntdTheme";
 
 /**
  * Applies a theme palette to CSS custom properties on the document root.
@@ -20,11 +20,11 @@ import { initAntdTheme } from '@/utils/initAntdTheme';
 function applyThemeToCssVars(themeData: ITheme) {
   const root = document.documentElement;
   for (const [key, value] of Object.entries(themeData)) {
-    if (typeof value === 'object' && value !== null) {
+    if (typeof value === "object" && value !== null) {
       for (const [shade, shadeValue] of Object.entries(value)) {
         root.style.setProperty(`--dyn-${key}-${shade}`, shadeValue as string);
       }
-    } else if (typeof value === 'string') {
+    } else if (typeof value === "string") {
       root.style.setProperty(`--dyn-${key}`, value);
     }
   }
@@ -44,10 +44,10 @@ function buildMergedTheme(themeContext: IThemeContext, selectedTheme: string): I
 
   if (themeData) {
     for (const [group, value] of Object.entries(themeData)) {
-      if (typeof value === 'object' && value !== null) {
+      if (typeof value === "object" && value !== null) {
         const defaultGroup = (defaultTheme as Record<string, unknown>)[group];
         mergedTheme[group] = {
-          ...(typeof defaultGroup === 'object' && defaultGroup !== null ? (defaultGroup as ColorPalette) : {}),
+          ...(typeof defaultGroup === "object" && defaultGroup !== null ? (defaultGroup as ColorPalette) : {}),
           ...(value as ColorPalette),
         };
       } else if (value !== undefined) {

@@ -1,6 +1,6 @@
-import type { IIconProps } from '@/types/common';
+import type { IIconProps } from "@/types/common";
 
-export default function DownloadIcon({ size = 14, color = 'currentColor' }: IIconProps) {
+export default function DownloadIcon({ size = 14, color = "currentColor" }: IIconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

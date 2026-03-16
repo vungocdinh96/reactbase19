@@ -1,6 +1,6 @@
-import type { IIconProps } from '@/types/common';
+import type { IIconProps } from "@/types/common";
 
-export default function ReactLogo({ size = 32, color = 'currentColor' }: IIconProps) {
+export default function ReactLogo({ size = 32, color = "currentColor" }: IIconProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 256 228" fill="none" aria-hidden="true">
       <path

@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   /* Primary */
@@ -124,10 +124,10 @@ body {
   mix-blend-mode: normal;
 }
 
-[data-theme-transition='back']::view-transition-new(root) {
+[data-theme-transition="back"]::view-transition-new(root) {
   z-index: 1;
 }
 
-[data-theme-transition='back']::view-transition-old(root) {
+[data-theme-transition="back"]::view-transition-old(root) {
   z-index: 9999;
 }

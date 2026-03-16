@@ -1,16 +1,16 @@
-import { fetchPublicJson } from '@/utils/publicConfig';
-import type { IPublicConfig } from '@/types/common';
-import type { IThemeContext } from '@/types/theme';
-import { type ReactNode, useEffect, useState } from 'react';
-import { MainContext } from './MainContext';
+import { fetchPublicJson } from "@/utils/publicConfig";
+import type { IPublicConfig } from "@/types/common";
+import type { IThemeContext } from "@/types/theme";
+import { type ReactNode, useEffect, useState } from "react";
+import { MainContext } from "./MainContext";
 
 export default function MainProvider({ children }: { children?: ReactNode }) {
   const [publicConfig, setPublicConfig] = useState<IPublicConfig | null>(null);
   const [theme, setTheme] = useState<IThemeContext | null>(null);
 
   useEffect(() => {
-    Promise.all([fetchPublicJson<IPublicConfig>('config.json'), fetchPublicJson<IThemeContext>('themes.json')]).then(([config, themeData]) => {
-      setPublicConfig(config ?? { API_ENDPOINT: '' });
+    Promise.all([fetchPublicJson<IPublicConfig>("config.json"), fetchPublicJson<IThemeContext>("themes.json")]).then(([config, themeData]) => {
+      setPublicConfig(config ?? { API_ENDPOINT: "" });
       setTheme(themeData ?? {});
     });
   }, []);

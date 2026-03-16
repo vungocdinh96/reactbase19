@@ -9,8 +9,8 @@
 ### Store — `src/store/index.ts`
 
 ```ts
-import { configureStore } from '@reduxjs/toolkit';
-import globalReducer from './globalSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import globalReducer from "./globalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -26,12 +26,12 @@ export type AppDispatch = typeof store.dispatch;
 ### Provider — `src/main.tsx`
 
 ```tsx
-import { Provider } from 'react-redux';
-import { store } from '@store/index';
+import { Provider } from "react-redux";
+import { store } from "@store/index";
 
 <Provider store={store}>
   <App />
-</Provider>
+</Provider>;
 ```
 
 ---
@@ -51,7 +51,7 @@ export const useAppSelector = useSelector.withTypes<RootState>();
 **Usage:**
 
 ```tsx
-import { useAppDispatch, useAppSelector } from '@hooks/index';
+import { useAppDispatch, useAppSelector } from "@hooks/index";
 
 const dispatch = useAppDispatch();
 const value = useAppSelector(state => state.global.currentPath);
@@ -63,27 +63,27 @@ const value = useAppSelector(state => state.global.currentPath);
 
 ### File naming
 
-| Rule | Example |
-|---|---|
-| Suffix `Slice` | `globalSlice.ts`, `authSlice.ts` |
-| Located in `src/store/` | `src/store/globalSlice.ts` |
+| Rule                    | Example                          |
+| ----------------------- | -------------------------------- |
+| Suffix `Slice`          | `globalSlice.ts`, `authSlice.ts` |
+| Located in `src/store/` | `src/store/globalSlice.ts`       |
 
 ### Slice template
 
 ```ts
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface ExampleState {
   value: string;
 }
 
 const initialState = {
-  value: '',
+  value: "",
 } satisfies ExampleState as ExampleState;
 
 export const exampleSlice = createSlice({
-  name: 'example',
+  name: "example",
   initialState,
   reducers: {
     setValue: (state, action: PayloadAction<string>) => {
@@ -100,7 +100,7 @@ export default exampleSlice.reducer;
 
 ```ts
 // src/store/index.ts
-import exampleReducer from './exampleSlice';
+import exampleReducer from "./exampleSlice";
 
 export const store = configureStore({
   reducer: {
@@ -118,8 +118,8 @@ export const store = configureStore({
 - Prefix all selectors with `select`
 
 ```ts
-import { createSelector } from '@reduxjs/toolkit';
-import type { RootState } from './index';
+import { createSelector } from "@reduxjs/toolkit";
+import type { RootState } from "./index";
 
 const selectGlobal = (state: RootState) => state.global;
 
@@ -164,22 +164,22 @@ extraReducers: builder => {
 
 ## Naming Conventions
 
-| Thing | Convention | Example |
-|---|---|---|
-| Slice file | `camelCase` + `Slice` suffix | `globalSlice.ts` |
-| Slice name | `camelCase` | `name: 'global'` |
-| Reducer key in store | `camelCase` | `global: globalReducer` |
-| Actions | `camelCase` verb | `updateCurrentPath` |
-| Selectors | `camelCase` + `select` prefix | `selectCurrentPath` |
-| State type/interface | `PascalCase` | `interface GlobalSlice` |
-| Boolean state fields | verb prefix | `isLoading`, `hasError` |
+| Thing                | Convention                    | Example                 |
+| -------------------- | ----------------------------- | ----------------------- |
+| Slice file           | `camelCase` + `Slice` suffix  | `globalSlice.ts`        |
+| Slice name           | `camelCase`                   | `name: 'global'`        |
+| Reducer key in store | `camelCase`                   | `global: globalReducer` |
+| Actions              | `camelCase` verb              | `updateCurrentPath`     |
+| Selectors            | `camelCase` + `select` prefix | `selectCurrentPath`     |
+| State type/interface | `PascalCase`                  | `interface GlobalSlice` |
+| Boolean state fields | verb prefix                   | `isLoading`, `hasError` |
 
 ---
 
 ## Current Slices
 
-| Slice | File | State keys |
-|---|---|---|
+| Slice    | File                       | State keys    |
+| -------- | -------------------------- | ------------- |
 | `global` | `src/store/globalSlice.ts` | `currentPath` |
 
 ---

@@ -1,9 +1,9 @@
 const CONSTANTS = {
   LOCAL_STORAGE_KEYS: {
-    LANG: 'LANG',
-    THEME: 'THEME',
+    LANG: "LANG",
+    THEME: "THEME",
   },
-  DEFAULT_THEME: 'light',
+  DEFAULT_THEME: "light",
 };
 
 export default CONSTANTS;

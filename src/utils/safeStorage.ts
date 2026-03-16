@@ -14,11 +14,7 @@ export const SafeLocalStorage = {
    * @param encryptKey Encryption key used to decrypt the stored value.
    * @param validator Optional function to validate the decrypted value. Returns null if invalid.
    */
-  getItem: (
-    key: string,
-    encryptKey: string,
-    validator?: (value: string) => boolean
-  ): string | null => {
+  getItem: (key: string, encryptKey: string, validator?: (value: string) => boolean): string | null => {
     if (typeof window === "undefined") return null;
 
     try {
@@ -33,14 +29,8 @@ export const SafeLocalStorage = {
       }
 
       // malicious script check (basic XSS prevention)
-      if (
-        /<script\b[^>]*>([\s\S]*?)<\/script>/gm.test(value) ||
-        /javascript:/gi.test(value) ||
-        /on\w+=/gi.test(value)
-      ) {
-        console.warn(
-          `[SafeLocalStorage] Potential harmful content detected in key "${key}". Access denied.`
-        );
+      if (/<script\b[^>]*>([\s\S]*?)<\/script>/gm.test(value) || /javascript:/gi.test(value) || /on\w+=/gi.test(value)) {
+        console.warn(`[SafeLocalStorage] Potential harmful content detected in key "${key}". Access denied.`);
         return null;
       }
 

@@ -1,15 +1,15 @@
-import { useAppDispatch } from '@/hooks/useAppDispatch';
-import { useAppSelector } from '@/hooks/useAppSelector';
-import { MainContext } from '@/providers/MainProvider/MainContext';
-import { updateSelectedTheme } from '@/store/globalSlice';
-import React, { useContext, useSyncExternalStore } from 'react';
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
+import { MainContext } from "@/providers/MainProvider/MainContext";
+import { updateSelectedTheme } from "@/store/globalSlice";
+import React, { useContext, useSyncExternalStore } from "react";
 
-function setThemeTransition(direction: 'back' | 'forward') {
-  document.documentElement.setAttribute('data-theme-transition', direction);
+function setThemeTransition(direction: "back" | "forward") {
+  document.documentElement.setAttribute("data-theme-transition", direction);
 }
 
 function clearThemeTransition() {
-  document.documentElement.removeAttribute('data-theme-transition');
+  document.documentElement.removeAttribute("data-theme-transition");
 }
 
 export const ThemeToggle = () => {
@@ -32,8 +32,8 @@ export const ThemeToggle = () => {
       return;
     }
 
-    const isBack = newTheme === 'light';
-    setThemeTransition(isBack ? 'back' : 'forward');
+    const isBack = newTheme === "light";
+    setThemeTransition(isBack ? "back" : "forward");
 
     const rect = ref.current?.getBoundingClientRect();
     const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
@@ -50,9 +50,9 @@ export const ThemeToggle = () => {
         { clipPath: isBack ? [...clipPath].reverse() : clipPath },
         {
           duration: 500,
-          easing: 'ease-in-out',
-          pseudoElement: isBack ? '::view-transition-old(root)' : '::view-transition-new(root)',
-          fill: 'forwards',
+          easing: "ease-in-out",
+          pseudoElement: isBack ? "::view-transition-old(root)" : "::view-transition-new(root)",
+          fill: "forwards",
         },
       );
     });
@@ -69,7 +69,7 @@ export const ThemeToggle = () => {
             <button
               key={idx}
               onClick={() => handleThemeChange(themeKey)}
-              style={{ backgroundColor: selectedTheme === themeKey ? '#06A0F1' : 'transparent' }}
+              style={{ backgroundColor: selectedTheme === themeKey ? "#06A0F1" : "transparent" }}
               className="border border-gray-400 hover:border-[#06A0F1] rounded px-3 py-1 transition-colors cursor-pointer"
             >
               {themeKey}

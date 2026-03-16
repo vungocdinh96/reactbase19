@@ -15,9 +15,7 @@ export async function fetchPublicJson<T = unknown>(filename: string): Promise<T 
     const response = await fetch(`/${filename}`);
 
     if (!response.ok) {
-      console.error(
-        `[PublicConfig] Failed to fetch "${filename}": ${response.status} ${response.statusText}`
-      );
+      console.error(`[PublicConfig] Failed to fetch "${filename}": ${response.status} ${response.statusText}`);
       return null;
     }
 

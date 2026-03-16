@@ -1,6 +1,6 @@
-import CONSTANTS from '@/utils/constants';
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import CONSTANTS from "@/utils/constants";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface GlobalSlice {
   selectedTheme: string;
@@ -9,11 +9,11 @@ interface GlobalSlice {
 
 const initialState = {
   selectedTheme: CONSTANTS.DEFAULT_THEME,
-  currentPath: '/',
+  currentPath: "/",
 } satisfies GlobalSlice as GlobalSlice;
 
 export const globalSlice = createSlice({
-  name: 'global',
+  name: "global",
   initialState,
   reducers: {
     updateSelectedTheme: (state, action: PayloadAction<string>) => {
