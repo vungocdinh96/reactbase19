@@ -12,7 +12,7 @@ function clearThemeTransition() {
   document.documentElement.removeAttribute("data-theme-transition");
 }
 
-export const ThemeToggle = () => {
+export function ThemeToggle() {
   const dispatch = useAppDispatch();
   const mainContext = useContext(MainContext);
   const selectedTheme = useAppSelector(state => state.global.selectedTheme);
@@ -78,4 +78,4 @@ export const ThemeToggle = () => {
         : null}
     </div>
   );
-};
+}

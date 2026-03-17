@@ -3,6 +3,7 @@ import { RouterProvider } from "@tanstack/react-router";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "@store/index";
 import "./styles/main.css";
+import "@/configs/i18n";
 import { router } from "./routes/router";
 import MainProvider from "./providers/MainProvider";
 import ThemeConfigProvider from "./providers/ThemeProvider";
