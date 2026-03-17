@@ -2,6 +2,8 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { MainContext } from "@/providers/MainProvider/MainContext";
 import { updateSelectedTheme } from "@/store/globalSlice";
+import CONSTANTS from "@/utils/constants";
+import { SafeLocalStorage } from "@/utils/safeStorage";
 import React, { useContext, useSyncExternalStore } from "react";
 
 function setThemeTransition(direction: "back" | "forward") {
@@ -27,6 +29,8 @@ export function ThemeToggle() {
   if (!mounted) return null;
 
   const handleThemeChange = (newTheme: string) => {
+    SafeLocalStorage.setItem(CONSTANTS.LOCAL_STORAGE_KEYS.THEME, newTheme, CONSTANTS.LOCAL_STORAGE_KEYS.THEME);
+
     if (!document.startViewTransition) {
       dispatch(updateSelectedTheme(newTheme));
       return;
