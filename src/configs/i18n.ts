@@ -3,7 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import type { CustomDetector } from "i18next-browser-languagedetector";
 import { SafeLocalStorage } from "@/utils/safeStorage";
-import CONSTANTS from "@/utils/constants";
+import CONSTANTS from "@/constants";
 
 import vi from "@/locales/vi.json";
 import en from "@/locales/en.json";

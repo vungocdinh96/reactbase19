@@ -4,7 +4,7 @@ import type { IThemeContext } from "@/types/theme";
 import { type ReactNode, useEffect, useState } from "react";
 import { MainContext } from "./MainContext";
 import { SafeLocalStorage } from "@/utils/safeStorage";
-import CONSTANTS from "@/utils/constants";
+import CONSTANTS from "@/constants";
 
 export default function MainProvider({ children }: { children?: ReactNode }) {
   const [publicConfig, setPublicConfig] = useState<IPublicConfig | null>(null);

@@ -7,8 +7,8 @@ import { queryClient } from "@/configs/queryClient";
 import "./styles/main.css";
 import "@/configs/i18n";
 import { router } from "./routes/router";
-import MainProvider from "./providers/MainProvider";
-import ThemeConfigProvider from "./providers/ThemeProvider";
+import MainProvider from "@providers/MainProvider";
+import ThemeConfigProvider from "@providers/ThemeProvider";
 
 createRoot(document.getElementById("root")!).render(
   <ReduxProvider store={store}>

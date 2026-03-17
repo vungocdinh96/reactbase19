@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import { MainContext } from "@/providers/MainProvider/MainContext";
 import { updateSelectedTheme } from "@/store/globalSlice";
-import CONSTANTS from "@/utils/constants";
+import CONSTANTS from "@/constants";
 import { SafeLocalStorage } from "@/utils/safeStorage";
 import React, { useContext, useSyncExternalStore } from "react";
 

@@ -1,4 +1,4 @@
-import CONSTANTS from "@/utils/constants";
+import CONSTANTS from "@/constants";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 

@@ -6,8 +6,8 @@
  */
 
 import type { IPublicConfig } from "@/types/common";
-import { SafeLocalStorage } from "./safeStorage";
-import CONSTANTS from "./constants";
+import { SafeLocalStorage } from "@utils/safeStorage";
+import CONSTANTS from "@/constants";
 
 /**
  * Fetches and parses a JSON file from the /public directory.

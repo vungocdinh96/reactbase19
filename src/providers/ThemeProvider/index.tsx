@@ -1,8 +1,8 @@
 import { useContext, useEffect, useMemo, type ReactNode } from "react";
 import { ConfigProvider, type ThemeConfig } from "antd";
-import { MainContext } from "../MainProvider/MainContext";
+import { MainContext } from "@providers/MainProvider/MainContext";
 import { SafeLocalStorage } from "@/utils/safeStorage";
-import CONSTANTS from "@/utils/constants";
+import CONSTANTS from "@/constants";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import type { ColorPalette, ITheme, IThemeContext } from "@/types/theme";
 import { updateSelectedTheme } from "@/store/globalSlice";
